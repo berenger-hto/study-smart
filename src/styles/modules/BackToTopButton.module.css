@@ -1,0 +1,42 @@
+.button {
+    --background-color: #222;
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    z-index: 999;
+    background: var(--background-color);
+    outline: none;
+    border: none;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        opacity: .8;
+    }
+
+    i {
+        font-size: 26px;
+        color: #fff;
+    }
+}
+
+.button.active {
+    animation: animate .5s forwards;
+}
+
+@keyframes animate {
+    to {
+        bottom: 20px;
+    }
+
+    from {
+        bottom: -100px;
+    }
+
+}

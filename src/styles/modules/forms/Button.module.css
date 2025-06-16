@@ -1,0 +1,36 @@
+.button {
+    button {
+        --button-border-color: #dde1e3;
+        --text-color: #333;
+        --shadow-color: rgba(51, 51, 51, 0.3);
+        outline: none;
+        border: 1px solid var(--input-border-color);
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-size: 16px;
+        color: var(--text-color);
+        transition: all .2s;
+        cursor: pointer;
+
+        &:focus {
+            box-shadow: 0 0 0 3px var(--shadow-color);
+        }
+
+        &:hover {
+            opacity: .8;
+        }
+
+        &:disabled {
+            opacity: .7;
+            cursor: not-allowed;
+        }
+    }
+}
+
+@media (max-width: 544px) {
+    .button {
+        button {
+            font-size: .9rem;
+        }
+    }
+}

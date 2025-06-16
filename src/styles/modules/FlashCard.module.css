@@ -1,0 +1,170 @@
+.card_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.5rem;
+
+    .card {
+        height: 230px;
+        width: 100%;
+        border-radius: 15px;
+        color: #eee;
+        position: relative;
+        cursor: pointer;
+        transition: all .6s ease-in-out;
+        transform-style: preserve-3d;
+    }
+
+    .card:last-child {
+        margin-bottom: 30px;
+    }
+
+    .card .card_details {
+        position: absolute;
+        bottom: 26px;
+        left: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        width: 300px;
+    }
+
+    .card .card_title {
+        font-size: 27px;
+        font-weight: 700;
+    }
+
+    .card .card_info {
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    /* Add flipped */
+
+    .cardBack {
+        transform: rotateY(180deg);
+        background: #eee;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.2rem;
+        border-radius: 15px;
+        color: #222;
+        padding: 0 1.3rem;
+    }
+
+    .flipped {
+        transform: rotateY(180deg);
+    }
+
+}
+
+.decks {
+    .type {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin: 2.5rem 0;
+        width: 250px;
+    }
+}
+
+@media (max-width: 544px) {
+    .card_container {
+        .card_details {
+            left: 0 !important;
+            padding: 0 20px;
+
+            .card_title {
+                font-size: 14px !important;
+            }
+        }
+    }
+}
+
+.editCard {
+    --background-color: #f1f2f4;
+
+    .returnButton {
+        border: none;
+        outline: none;
+        background: var(--background-color);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        padding: 8px;
+        border-radius: 15px;
+        transition: all .2s ease-in-out;
+        margin: -1rem 0 2rem 0;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+
+    .returnButton span {
+        font-size: 1rem;
+    }
+
+    .returnButton i {
+        font-size: 1.1rem;
+    }
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .btn_container {
+        display: flex;
+        justify-content: end;
+        gap: 1rem;
+    }
+}
+
+/* Card types */
+
+.ocean_breeze {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+}
+
+.purple_sky {
+    background: linear-gradient(135deg, #8e2de2, #4a00e0);
+}
+
+.sunset_peach {
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+}
+
+.mint_fresh {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: #333 !important;
+}
+
+.instagram_ish {
+    background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.futur_dark_glow {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.cold_steel {
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+
+.creamy_mango {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: #333 !important;
+}
+
+.deep_space {
+    background: radial-gradient(circle, #1e3c72, #2a5298);
+}
