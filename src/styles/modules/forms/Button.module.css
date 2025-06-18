@@ -3,6 +3,7 @@
         --button-border-color: #dde1e3;
         --text-color: #333;
         --shadow-color: rgba(51, 51, 51, 0.3);
+        --background-color: #efefef;
         outline: none;
         border: 1px solid var(--input-border-color);
         border-radius: 10px;
@@ -11,6 +12,7 @@
         color: var(--text-color);
         transition: all .2s;
         cursor: pointer;
+        background: var(--background-color);
 
         &:focus {
             box-shadow: 0 0 0 3px var(--shadow-color);
@@ -21,8 +23,21 @@
         }
 
         &:disabled {
-            opacity: .7;
+            opacity: .6;
             cursor: not-allowed;
+        }
+    }
+}
+
+/* Dark Mode */
+
+:global(body.dark) {
+    .button {
+        button {
+            --button-border-color: #dde1e3;
+            --text-color: #eee;
+            --shadow-color: rgba(119, 119, 119, 0.3);
+            --background-color: rgba(51, 51, 51, 0.89);
         }
     }
 }

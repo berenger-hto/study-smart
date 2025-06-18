@@ -11,6 +11,10 @@
     scroll-behavior: smooth;
 }
 
+.scrollHidden {
+    overflow: hidden;
+}
+
 kbd {
     background-color: #eee;
     border-radius: 3px;
@@ -45,6 +49,13 @@ a {
         font-weight: 600;
         margin: 2.5rem 0;
     }
+}
+
+/* Dark Mode */
+
+body.dark {
+    background: #444 !important;
+    color: #eee !important;
 }
 
 @media (max-width: 1100px) {

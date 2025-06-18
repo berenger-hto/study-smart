@@ -64,3 +64,31 @@ export type FlashCardData = {
     question: string
     answer: string
 }
+export type ThemeType = | "light" | "dark"
+
+
+export type ThemeContextType = {
+    theme: ThemeType
+    toggleTheme: () => void
+}
+
+export interface ThemeContextProviderProps {
+    children: ReactNode
+}
+
+export interface NavLinksProps {
+    ulActive: boolean
+    onMenuClick: () => void
+}
+
+export interface NavbarStartProps extends NavLinksProps {
+    handleOpenAndClose: () => void
+}
+
+export interface NavbarControlsProps extends NavbarStartProps{
+    onMenuClick: () => void
+}
+
+export interface FlashCardPreviewProps {
+    data: FlashCardData
+}

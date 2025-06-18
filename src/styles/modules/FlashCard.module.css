@@ -42,8 +42,10 @@
     /* Add flipped */
 
     .cardBack {
+        --background-color: #eee;
+        --text-color: #222;
         transform: rotateY(180deg);
-        background: #eee;
+        background: var(--background-color);
         position: absolute;
         width: 100%;
         height: 100%;
@@ -53,7 +55,7 @@
         align-items: center;
         font-size: 1.2rem;
         border-radius: 15px;
-        color: #222;
+        color: var(--text-color);
         padding: 0 1.3rem;
     }
 
@@ -72,23 +74,12 @@
     }
 }
 
-@media (max-width: 544px) {
-    .card_container {
-        .card_details {
-            left: 0 !important;
-            padding: 0 20px;
-
-            .card_title {
-                font-size: 14px !important;
-            }
-        }
-    }
-}
-
 .editCard {
-    --background-color: #f1f2f4;
 
     .returnButton {
+        --background-color: #f1f2f4;
+        --text-color: #000;
+        color: var(--text-color);
         border: none;
         outline: none;
         background: var(--background-color);
@@ -97,7 +88,7 @@
         align-items: center;
         justify-content: center;
         gap: .3rem;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 15px;
         transition: all .2s ease-in-out;
         margin: -1rem 0 2rem 0;
@@ -126,8 +117,39 @@
         display: flex;
         justify-content: end;
         gap: 1rem;
+        margin: 0 0 2rem 0;
     }
 }
+
+/* Dark Mode */
+
+:global(body.dark) {
+    .editCard {
+        .returnButton {
+            --background-color: #333;
+            --text-color: #eee;
+        }
+    }
+
+    .card_container .cardBack {
+        --background-color: #333;
+        --text-color: #ccc;
+    }
+}
+
+@media (max-width: 544px) {
+    .card_container {
+        .card_details {
+            left: 0 !important;
+            padding: 0 20px;
+
+            .card_title {
+                font-size: 14px !important;
+            }
+        }
+    }
+}
+
 
 /* Card types */
 

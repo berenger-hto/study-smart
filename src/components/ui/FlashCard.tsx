@@ -28,8 +28,11 @@ export function FlashCard({background, data, onClick, notFlipped = false}: Flash
         <div className={`${styles.card_details}`}>
             <p className={styles.card_title}>{data.question}</p>
             {
-                !notFlipped &&
+                !notFlipped ?
                 <p className={styles.card_info}>Clique pour voir le résultat</p>
+                :
+                <p className={styles.card_info}>Clique pour modifier</p>
+
             }
         </div>
         <div className={styles.cardBack}>

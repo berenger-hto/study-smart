@@ -4,8 +4,7 @@ import styles from "../../styles/modules/FlashCard.module.css"
 import {Input} from "../forms/Input.tsx";
 import {Textarea} from "../forms/Textarea.tsx";
 import {Button} from "../forms/Button.tsx";
-import {FlashCard} from "./FlashCard.tsx";
-import {uniqueRandomBackground} from "../../utils/backgroundsCard.ts";
+import {FlashCardPreview} from "./FlashCardPreview.tsx";
 
 /**
  * FlashCardForm component
@@ -50,11 +49,9 @@ export function FlashCardForm({data}: FlashCardFormProps) {
 
     return <>
         {
-            visualize && <div className={styles.card_container}>
-                <FlashCard background={uniqueRandomBackground} data={dataState} />
-            </div>
+            visualize && <FlashCardPreview data={dataState} />
         }
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
             <Input
                 type="text"
                 label="Question"
