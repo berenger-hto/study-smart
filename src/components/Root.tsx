@@ -1,6 +1,6 @@
-import {Navbar} from "./Navbar.tsx";
+import {Navbar} from "./ui/Navbar.tsx";
 import {Outlet} from "react-router";
-import {BackToTopButton} from "./BackToTopButton.tsx";
+import {BackToTopButton} from "./ui/BackToTopButton.tsx";
 
 /**
  * Root component

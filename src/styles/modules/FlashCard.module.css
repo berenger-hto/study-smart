@@ -121,6 +121,24 @@
     }
 }
 
+.noFlashCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    a {
+        text-decoration: none;
+        color: #eee;
+    }
+}
+
 /* Dark Mode */
 
 :global(body.dark) {

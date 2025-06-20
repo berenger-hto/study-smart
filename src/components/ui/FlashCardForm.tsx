@@ -1,16 +1,13 @@
 import type {FlashCardData, FlashCardFormProps} from "../../types/types.ts";
-import {type ChangeEvent, type FormEventHandler, type SyntheticEvent, useState} from "react";
-import styles from "../../styles/modules/FlashCard.module.css"
-import {Input} from "../forms/Input.tsx";
-import {Textarea} from "../forms/Textarea.tsx";
-import {Button} from "../forms/Button.tsx";
+import {type ChangeEvent, useState} from "react";
 import {FlashCardPreview} from "./FlashCardPreview.tsx";
+import {FormElements} from "./form/FormElements.tsx";
 
 /**
  * FlashCardForm component
  * Formulaire pour ajouter ou modifier des flashcards
  */
-export function FlashCardForm({data}: FlashCardFormProps) {
+export function FlashCardForm({data, action}: FlashCardFormProps) {
 
     /**
      * Gérer la data passée en param
@@ -23,6 +20,10 @@ export function FlashCardForm({data}: FlashCardFormProps) {
     }
 
     const [dataState, setDataState] = useState<FlashCardData>(dataAssign)
+
+    /**
+     * Modifier en temps réel les données saisies au niveau de la Flashcard
+     */
     const handleModifyQuestion = (e:ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.value
         setDataState(prevState => ({...prevState, question: value}))
@@ -39,41 +40,27 @@ export function FlashCardForm({data}: FlashCardFormProps) {
     const [visualize, setVisualize] = useState<boolean>(false)
     const handleVisualize = () => setVisualize(!visualize)
 
+
     /**
-     * Submit handler
+     * FormElements Component props
      */
-    const handleSubmit: FormEventHandler<HTMLFormElement> = (e: SyntheticEvent) => {
-        e.preventDefault()
-        console.log("Submitted")
+    const formElementsProps = {
+        dataState,
+        visualize,
+        handleModifyQuestion,
+        handleModifyAnswer,
+        handleVisualize,
+        setDataState,
+        action
     }
+
 
     return <>
         {
             visualize && <FlashCardPreview data={dataState} />
         }
-        <form autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
-            <Input
-                type="text"
-                label="Question"
-                placeholder="Quelle est votre question"
-                value={dataState.question}
-                onChange={handleModifyQuestion}
-            />
-            <Textarea
-                label="Réponse"
-                placeholder="La réponse à votre question"
-                value={dataState.answer}
-                onChange={handleModifyAnswer}
-            />
-            <div className={styles.btn_container}>
-                <Button type="submit">Sauvegarder</Button>
-                <Button
-                    type="button"
-                    onClick={handleVisualize}
-                >
-                    {!visualize ? "Visualiser" : "Masquer"}
-                </Button>
-            </div>
-        </form>
+
+        <FormElements {...formElementsProps} />
+
     </>
 }

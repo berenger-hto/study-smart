@@ -1,6 +1,6 @@
 import {createContext, useContext} from "react";
 import type {ThemeContextType} from "../types/types.ts";
-import {getCurrentTheme} from "../utils/getCurrentTheme.ts";
+import {getCurrentTheme} from "../functions/getCurrentTheme.ts";
 
 export const ThemeContext = createContext<ThemeContextType>({
     theme: getCurrentTheme(),

@@ -1,12 +1,14 @@
-import styles from "../../styles/modules/PageError.module.css"
+import styles from "../styles/modules/PageError.module.css"
 import {Link} from "react-router";
-import {useDocumentTitle} from "../../hooks/useDocumentTitle.ts";
+import {useDocumentTitle} from "../hooks/useDocumentTitle.ts";
+import type {PageErrorProps} from "../types/types.ts";
 
 /**
  * PageError component
  */
-export function PageError() {
-    useDocumentTitle("Error 404 ! Page Introuvable")
+export function PageError({pageTitle = "Error 404 ! Page Introuvable"}: PageErrorProps) {
+    useDocumentTitle(pageTitle)
+
     return <>
         <div className={styles.face}>
             <div className={styles.band}>

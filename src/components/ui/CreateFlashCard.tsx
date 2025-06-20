@@ -9,6 +9,6 @@ export function CreateFlashCard() {
 
     return <div className="container">
         <p className="title">Ajouter une Flashcard</p>
-        <FlashCardForm />
+        <FlashCardForm action="add" />
     </div>
 }

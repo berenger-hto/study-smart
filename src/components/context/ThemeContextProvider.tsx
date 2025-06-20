@@ -1,7 +1,7 @@
 import type {ThemeContextProviderProps, ThemeType} from "../../types/types.ts";
 import {useEffect, useState} from "react";
 import {ThemeContext} from "../../hooks/useTheme.ts";
-import {getCurrentTheme} from "../../utils/getCurrentTheme.ts";
+import {getCurrentTheme} from "../../functions/getCurrentTheme.ts";
 /**
  * ThemeContextProvider component
  * Utiliser pour introduire le thème

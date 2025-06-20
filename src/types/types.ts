@@ -1,4 +1,10 @@
-import type {ButtonHTMLAttributes, InputHTMLAttributes, ReactNode, TextareaHTMLAttributes} from "react";
+import type {
+    ButtonHTMLAttributes,
+    ChangeEvent,
+    InputHTMLAttributes,
+    ReactNode,
+    TextareaHTMLAttributes
+} from "react";
 
 export interface LogoProps {
     width?: string
@@ -57,6 +63,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export interface FlashCardFormProps {
     data?: FlashCardData
+    action: | "add" | "update"
 }
 
 export type FlashCardData = {
@@ -91,4 +98,17 @@ export interface NavbarControlsProps extends NavbarStartProps{
 
 export interface FlashCardPreviewProps {
     data: FlashCardData
+}
+
+export interface FormElementsProps {
+    dataState: FlashCardData
+    handleModifyQuestion: (e:ChangeEvent<HTMLInputElement>) => void
+    handleModifyAnswer: (e:ChangeEvent<HTMLTextAreaElement>) => void
+    visualize: boolean
+    handleVisualize: () => void
+    action: | "add" | "update"
+}
+
+export interface PageErrorProps {
+    pageTitle?: string
 }
