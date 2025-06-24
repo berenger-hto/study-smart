@@ -1,8 +1,10 @@
 import styles from "../../styles/modules/Navbar.module.css";
-import {SearchBar} from "./SearchBar.tsx";
+import {SearchBar} from "./search/SearchBar.tsx";
 import type {SearchProps} from "../../types/types.ts";
 import {createPortal} from "react-dom";
 import type {ReactPortal} from "react";
+import {SearchItem} from "./search/SearchItem.tsx";
+import {useSearch} from "../../hooks/useSearch.ts";
 
 /**
  * Search Component
@@ -10,13 +12,24 @@ import type {ReactPortal} from "react";
 export function Search({handleClose}: SearchProps): ReactPortal {
     const searchContainer = document.querySelector(".search_modal") as HTMLDivElement
 
+    /**
+     * Récupérer les résultats de recherche
+     */
+    const {result} = useSearch()
+
     return createPortal(<div className={styles.search_container}>
         <div className={styles.search}></div>
         <SearchBar placeholder="Tapez ici votre recherche" />
         <div className={styles.item_container}>
-            <Item />
-            <Item />
-            <Item />
+            {
+                result && result.map(data => (
+                    <SearchItem
+                        key={data.id}
+                        data={data}
+                        handleClose={handleClose}
+                    />
+                ))
+            }
         </div>
         <button
             onClick={handleClose}
@@ -24,12 +37,6 @@ export function Search({handleClose}: SearchProps): ReactPortal {
         >
             Fermer
         </button>
-    </div>,
-        searchContainer)
+    </div>, searchContainer)
 }
 
-function Item() {
-    return <div className={styles.item}>
-        <p>Lorem ipsum dolor</p>
-    </div>
-}

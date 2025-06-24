@@ -127,6 +127,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+    padding: 30px 0;
 
     p {
         font-size: 22px;
@@ -164,6 +165,19 @@
             .card_title {
                 font-size: 14px !important;
             }
+        }
+    }
+
+    .noFlashCard {
+        p {
+            font-size: 17px;
+        }
+    }
+
+    .form {
+        .btn_container:has(> :nth-child(3)) {
+            display: grid;
+            grid-template-columns: repeat(2, 0fr);
         }
     }
 }

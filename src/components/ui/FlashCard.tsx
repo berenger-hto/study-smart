@@ -24,7 +24,7 @@ export function FlashCard({background, data, onClick, notFlipped = false}: Flash
         setFlipped(prevState => !prevState)
     }
 
-    return <div onClick={handleFlipped} className={`${styles.card} ${styles[background]} ${flipped && !notFlipped ? styles.flipped : ""}`}>
+    return <div id={data.id} onClick={handleFlipped} className={`${styles.card} ${styles[background]} ${flipped && !notFlipped ? styles.flipped : ""}`}>
         <div className={`${styles.card_details}`}>
             <p className={styles.card_title}>{data.question}</p>
             {

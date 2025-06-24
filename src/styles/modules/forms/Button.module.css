@@ -27,6 +27,12 @@
             cursor: not-allowed;
         }
     }
+
+    .delete {
+        --text-color: #fff;
+        background: #dc3545;
+        color: var(--text-color);
+    }
 }
 
 /* Dark Mode */

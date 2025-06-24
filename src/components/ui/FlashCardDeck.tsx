@@ -24,17 +24,17 @@ export function FlashCardDeck() {
     const handleClick: (id: string) => void = (id) => {
         handleNavigate(`card/${id}`)
     }
-    const {get: getFlashCard} = useDatas()
+    const {get: getFlashCard, hasFlashcards} = useDatas()
     const flashcards = getFlashCard()
 
 
     return <>
         {
             isFlashCardDeck && <div className={`container ${styles.decks}`}>
-            <p className={styles.type}>Mes cartes</p>
+            {hasFlashcards && <p className={styles.type}>Mes cartes</p>}
             <div className={styles.card_container}>
                 {
-                    flashcards.length > 0 ? flashcards.map(data => (
+                    hasFlashcards ? flashcards.map(data => (
                         <FlashCard
                             key={data.id}
                             data={data}

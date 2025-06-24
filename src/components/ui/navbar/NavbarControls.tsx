@@ -1,5 +1,5 @@
 import styles from "../../../styles/modules/Navbar.module.css";
-import {SearchBar} from "../SearchBar.tsx";
+import {SearchBar} from "../search/SearchBar.tsx";
 import {ToggleTheme} from "./ToggleTheme.tsx";
 import img from "../../../assets/images/profil.png";
 import type {NavbarControlsProps} from "../../../types/types.ts";

@@ -4,9 +4,9 @@ import styles from "../../styles/modules/forms/Button.module.css"
 /**
  * Button component
  */
-export function Button({children, ...props}: ButtonProps) {
+export function Button({children, action, ...props}: ButtonProps) {
     return <div className={styles.button}>
-        <button {...props}>
+        <button className={action && styles.delete} {...props}>
             {children}
         </button>
     </div>

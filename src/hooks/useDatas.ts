@@ -10,7 +10,10 @@ type ParamType = string | undefined
  * Hook useData
  * Ajouter ou récupérer des datas
  */
-export function useDatas(key:string = "data") {
+export function useDatas(
+    setButtonDisabled?: Dispatch<SetStateAction<boolean>>,
+    key:string = "data"
+) {
 
     /**
      * Utiliser une toast
@@ -28,6 +31,16 @@ export function useDatas(key:string = "data") {
     const handleError = (message: string, e?: unknown) => {
         error(message)
         console.error(`Error: ${e ? e : message}`)
+    }
+    
+    /**
+     * Handle Success
+     * Appelez quand une opération a réussie
+     */
+    const handleSuccess = (message: string, navTo: string = "../") => {
+        setButtonDisabled?.(true)
+        success(message)
+        setTimeout(() => handleNavigate(navTo), 2000)
     }
 
     /**
@@ -50,7 +63,6 @@ export function useDatas(key:string = "data") {
         action: FormElementsProps["action"],
         question: ParamType,
         answer: ParamType,
-        setButtonDisabled: Dispatch<SetStateAction<boolean>>,
         flashCardId?: ParamType
     ): void => {
         if (!action) throw new Error("Une erreur interne s'est produite")
@@ -58,16 +70,6 @@ export function useDatas(key:string = "data") {
         if (!question || !answer) {
             handleError("Renseignez les champs", "Aucune donnée entrée")
             return
-        }
-
-        /**
-         * Save success
-         * Appelez quand la sauvegarde est un succès
-         */
-        const saveSuccess = (message: string, navTo: string = "../") => {
-            setButtonDisabled(true)
-            success(message)
-            setTimeout(() => handleNavigate(navTo), 2000)
         }
 
         const newData: FlashCardData = {
@@ -90,7 +92,7 @@ export function useDatas(key:string = "data") {
         if (action === "add") {
             try {
                 localStorage.setItem(key, JSON.stringify([...datas, newData]))
-                saveSuccess("Flashcard créée !")
+                handleSuccess("Flashcard créée !")
                 return
             } catch (e) {
                 handleError("Une erreur s'est produite", e)
@@ -108,16 +110,37 @@ export function useDatas(key:string = "data") {
 
             try {
                 localStorage.setItem(key, JSON.stringify([...prevFlashCards, {...newData, id: flashCardId}]))
-                saveSuccess("Flashcard modifiée !")
+                handleSuccess("Flashcard modifiée !")
             } catch (e) {
-                error("Une erreur s'est produite")
-                console.error(`UpdateError: ${e}`)
+                handleError("Une erreur s'est produite", e)
                 return
             }
         }
     }
 
+    /**
+     * Supprimer une flashcard
+     */
+    const remove = (flashCardId: ParamType) => {
+        if (!flashCardId) throw new Error("Une erreur interne s'est produite")
+        const datas = get()
+        const flashCard = datas.find(data => data.id === flashCardId)
+        if (!flashCard) {
+            handleError("Flashcard inexistante")
+            return
+        }
+
+        const newDatas = datas.filter(data => data.id !== flashCardId)
+        try {
+            localStorage.setItem(key, JSON.stringify(newDatas))
+            handleSuccess("Flashcard supprimée !")
+        } catch (e) {
+            handleError("Une erreur s'est produite", e)
+            return
+        }
+    }
+
     return {
-        get, save
+        get, save, remove, hasFlashcards: get().length > 0
     }
 }

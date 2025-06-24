@@ -59,6 +59,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode
+    action?: "delete"
 }
 
 export interface FlashCardFormProps {
@@ -77,6 +78,11 @@ export type ThemeType = | "light" | "dark"
 export type ThemeContextType = {
     theme: ThemeType
     toggleTheme: () => void
+}
+
+export interface SearchItemProps {
+    data: FlashCardData
+    handleClose: SearchProps["handleClose"]
 }
 
 export interface ThemeContextProviderProps {

@@ -1,6 +1,6 @@
-import type {SearchBarProps} from "../../types/types.ts";
-import styles from "../../styles/modules/Navbar.module.css";
-import {useEffect, useRef} from "react";
+import type {SearchBarProps} from "../../../types/types.ts";
+import styles from "../../../styles/modules/Navbar.module.css";
+import {type FormEvent, useEffect, useRef} from "react";
 
 /**
  * SearchBar Component
@@ -26,6 +26,17 @@ export function SearchBar(
         }
     }, []);
 
+    /**
+     * Créer l'évènement search en envoyant la valeur de la rechercher
+     */
+    const handleInput = (e: FormEvent<HTMLInputElement>) => {
+        const value =  e.currentTarget.value
+        const searchEvent = new CustomEvent("search", {
+            detail: value
+        })
+        window.dispatchEvent(searchEvent)
+    }
+
     return <div className={styles.search_bar} onClick={onClick}>
         <i className="bx bx-search"></i>
         <input
@@ -34,6 +45,7 @@ export function SearchBar(
             value={value}
             onChange={e => onChange?.(e.currentTarget.value)}
             placeholder={placeholder}
+            onInput={handleInput}
         />
         <p>
             <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>

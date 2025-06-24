@@ -5,19 +5,26 @@ import {randomBackground} from "../../utils/backgroundsCard.ts";
 import {shuffle} from "lodash";
 import {useDatas} from "../../hooks/useDatas.ts";
 import {NoFlashCard} from "./NoFlashCard.tsx";
+import {useRef} from "react";
+import type {FlashCardData} from "../../types/types.ts";
 
 /**
  * FlashCard component
  */
 export function FlashCards() {
     useDocumentTitle("StudySmart")
-    const {get: getFlashcards} = useDatas()
-    const flashCards = shuffle(getFlashcards())
+    const {get: getFlashcards, hasFlashcards} = useDatas()
+
+    /**
+     * Sauvegarder les flashcards pour que le tableau ne change pas à chaque rendu composant
+     */
+    const flashCards = useRef<FlashCardData[]>(shuffle(getFlashcards()))
+
     return <div className="container">
-        <p className="title">Flashcards</p>
+        {hasFlashcards && <p className="title">Flashcards</p>}
         <div className={styles.card_container}>
             {
-                flashCards.length > 0 ? flashCards.map(flashCard => (
+                hasFlashcards ? flashCards.current.map(flashCard => (
                     <FlashCard
                         data={flashCard}
                         background={randomBackground()}

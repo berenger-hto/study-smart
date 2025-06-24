@@ -4,6 +4,7 @@ import {Search} from "./Search.tsx";
 import type {MenuClickHandler} from "../../types/types.ts";
 import {NavbarControls} from "./navbar/NavbarControls.tsx";
 import {NavbarStart} from "./navbar/NavbarStart.tsx";
+import {hiddenScroll} from "../../functions/hiddenScroll.ts";
 
 /**
  * Navbar component
@@ -26,9 +27,11 @@ export function Navbar() {
     /**
      * Open and close Search component
      */
-    const handleOpenAndClose = () => {
+    const handleOpenAndClose = useCallback(() => {
         setActiveSearch(prevState => !prevState)
-    }
+        if (!activeSearch) hiddenScroll(document.body)
+        else hiddenScroll(document.body, "visible")
+    }, [activeSearch])
 
     useEffect(() => {
         const handleKeyboard = (e: KeyboardEvent) => {
@@ -37,7 +40,7 @@ export function Navbar() {
 
         window.addEventListener("keydown", handleKeyboard)
         return () => window.removeEventListener("keydown", handleKeyboard)
-    }, [])
+    }, [handleOpenAndClose])
 
     const navbarProps = {
         ulActive,
