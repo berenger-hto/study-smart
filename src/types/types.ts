@@ -37,10 +37,10 @@ export type BackgroundCard =
     | "tech_vibes"
 
 export interface FlashCardProps {
-    background: BackgroundCard
     data: FlashCardData
     onClick?: () => void
     notFlipped?: boolean
+    flashCardId?: string | null
 }
 
 export type NavLinksType = {

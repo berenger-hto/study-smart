@@ -48,7 +48,7 @@ export function SearchBar(
             onInput={handleInput}
         />
         <p>
-            <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>
+            <kbd>Ctrl</kbd> + <kbd>K</kbd>
         </p>
     </div>
 }

@@ -35,7 +35,7 @@ export function FormElements(
     /**
      * Récupérer les fonctions necessaires à la modification de data
      */
-    const {save: saveData, remove: removeData} = useDatas(setDisabled)
+    const {save: saveData} = useDatas(setDisabled)
 
     /**
      * Submit handler
@@ -46,11 +46,6 @@ export function FormElements(
         const question = data.get("question")?.toString()
         const answer = data.get("answer")?.toString()
         saveData(action, question, answer, id)
-    }
-
-    const removeFlashCard = () => {
-        console.log("remove")
-        removeData(id)
     }
 
     return <>
@@ -77,15 +72,6 @@ export function FormElements(
                 <Button type="button" onClick={handleVisualize}>
                     {!visualize ? "Visualiser" : "Masquer"}
                 </Button>
-                {
-                    id && <Button
-                        type="button"
-                        action="delete"
-                        onClick={removeFlashCard}
-                    >
-                        Supprimer
-                    </Button>
-                }
             </div>
         </form>
     </>

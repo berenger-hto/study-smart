@@ -1,11 +1,14 @@
 import type {FlashCardProps} from "../../types/types.ts";
 import styles from "../../styles/modules/FlashCard.module.css"
 import {useState} from "react";
+import {Button} from "../forms/Button.tsx";
+import {useDatas} from "../../hooks/useDatas.ts";
+import * as React from "react";
 
 /**
  * Card component
  */
-export function FlashCard({background, data, onClick, notFlipped = false}: FlashCardProps) {
+export function FlashCard({data, onClick, notFlipped = false, flashCardId = null}: FlashCardProps) {
 
     /**
      * Retourner la carte pour voir la réponse si on clique dessus
@@ -24,7 +27,17 @@ export function FlashCard({background, data, onClick, notFlipped = false}: Flash
         setFlipped(prevState => !prevState)
     }
 
-    return <div id={data.id} onClick={handleFlipped} className={`${styles.card} ${styles[background]} ${flipped && !notFlipped ? styles.flipped : ""}`}>
+    /**
+     * Remove flashcard function
+     */
+    const {remove: removeCard} = useDatas()
+    const handleDeleteCard = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        removeCard(flashCardId!)
+    }
+
+    return <div id={data.id} onClick={handleFlipped} className={`${styles.card} ${flipped && !notFlipped ? styles.flipped : ""}`}>
+        {(notFlipped && flashCardId) && <Button action="delete" onClick={handleDeleteCard}>Supprimer</Button>}
         <div className={`${styles.card_details}`}>
             <p className={styles.card_title}>{data.question}</p>
             {

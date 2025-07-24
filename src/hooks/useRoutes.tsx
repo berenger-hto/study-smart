@@ -24,10 +24,6 @@ export const routes = createBrowserRouter([
                 element: <CreateFlashCard />
             },
             {
-                path: "dev/:id",
-                element: <div>Card Card id: 1</div>
-            },
-            {
                 path: "flashcards",
                 element: <FlashCardDeck />,
                 children: [

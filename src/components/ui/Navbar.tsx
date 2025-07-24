@@ -28,6 +28,8 @@ export function Navbar() {
      * Open and close Search component
      */
     const handleOpenAndClose = useCallback(() => {
+        const currentRoute = window.location.pathname
+        if (currentRoute.includes("create") || currentRoute.includes("flashcards/card")) return
         setActiveSearch(prevState => !prevState)
         if (!activeSearch) hiddenScroll(document.body)
         else hiddenScroll(document.body, "visible")
@@ -35,7 +37,10 @@ export function Navbar() {
 
     useEffect(() => {
         const handleKeyboard = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.altKey && e.code === "KeyF") handleOpenAndClose()
+            if (e.ctrlKey && e.code === "KeyK") {
+                e.preventDefault()
+                handleOpenAndClose()
+            }
         }
 
         window.addEventListener("keydown", handleKeyboard)

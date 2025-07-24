@@ -1,7 +1,6 @@
 import styles from "../../styles/modules/FlashCard.module.css"
 import {useDocumentTitle} from "../../hooks/useDocumentTitle.ts";
 import {FlashCard} from "./FlashCard.tsx";
-import {randomBackground} from "../../utils/backgroundsCard.ts";
 import {shuffle} from "lodash";
 import {useDatas} from "../../hooks/useDatas.ts";
 import {NoFlashCard} from "./NoFlashCard.tsx";
@@ -27,7 +26,6 @@ export function FlashCards() {
                 hasFlashcards ? flashCards.current.map(flashCard => (
                     <FlashCard
                         data={flashCard}
-                        background={randomBackground()}
                         key={flashCard.id}
                     />
                 )) : <NoFlashCard />

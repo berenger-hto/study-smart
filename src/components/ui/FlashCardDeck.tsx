@@ -1,6 +1,5 @@
 import styles from "../../styles/modules/FlashCard.module.css";
 import {FlashCard} from "./FlashCard.tsx";
-import {randomBackground} from "../../utils/backgroundsCard.ts";
 import {Outlet, useLocation} from "react-router";
 import {useDocumentTitle} from "../../hooks/useDocumentTitle.ts";
 import {useDatas} from "../../hooks/useDatas.ts";
@@ -38,9 +37,9 @@ export function FlashCardDeck() {
                         <FlashCard
                             key={data.id}
                             data={data}
-                            background={randomBackground()}
                             onClick={() => handleClick(data.id)}
                             notFlipped={true}
+                            flashCardId={data.id}
                         />
                     )) : <NoFlashCard />
                 }
